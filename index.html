@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsform</title>
+    <style>
+        *{
+            background-color: rgb(190, 247, 228);
+        }
+        .container{
+            margin:25px;
+        }
+        .first input{
+            width: 40vw;
+            padding: 7px;
+            border-radius:7px;
+            border: 1px solid black;
+            background-color: aliceblue;
+            margin:10px
+
+        }
+        .second input{
+            width: 40vw;
+            padding: 7px;
+            border-radius:7px;
+            border: 1px solid black;
+            background-color: aliceblue;
+            margin:10px
+        }
+        .third input{
+            width: 40vw;
+            padding: 7px;
+            border-radius:7px;
+            border: 1px solid black;
+            background-color: aliceblue;
+            margin:10px
+        }
+        .fourth input{
+            width: 40vw;
+            padding: 7px;
+            border-radius:7px;
+            border: 1px solid black;
+            background-color: aliceblue;
+            margin:10px
+        }
+        .h1{
+            margin-left:35vh;
+        }
+        @media screen and (max-width:600px) {
+            .h1{
+                margin-left:0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="h1">Registration form</h1><hr>
+     <div class="container">
+        
+    <form action="/myaction.php" name="theform" onsubmit="return validateForm()" method="post">
+        <div class="first" id="name">
+            Name: <input placeholder="enter your name" type="text" name="fname"><b></b><span class="Nerror"></span>
+        </div><br>
+
+        <div class="third" id="email">
+            email: <input placeholder="enter your emailid" type="email" name="femail"><b></b><span
+                class="Nerror"></span>
+        </div><br>
+
+        <div class="first" id="name">
+            Age: <input placeholder="enter your age" type="number" name="fage"><b></b><span class="Nerror"></span>
+        </div><br>
+
+        <div class="first" id="address">
+            Address: <input placeholder="enter your address" type="address" name="faddress"><b></b><span
+                class="Nerror"></span>
+        </div><br>
+
+        <div id="box2">
+            <h3>Your favorite programming languages</h3>
+            <input type="checkbox" name="maths" value="maths" id=>Java <br>
+            <input type="checkbox" name="Bio" value="Bio">Python <br>
+            <input type="checkbox" name="Bio" value="Bio">C <br>
+            <input type="checkbox" name="Bio" value="Bio">C++ <br>
+        
+        </div><br>
+
+        Group : <input type="radio" value="male" name="gender">A
+        <input type="radio" value="male" name="gender">B
+         <input type="radio" value="male" name="gender">C
+        <input type="radio" value="female" name="gender">D <br><br>
+
+        <div class="second" id="pass">
+            Favorite singer: <input placeholder="" type="text" name="fpass"><b></b><span
+                class="Nerror"></span>
+        </div><br>
+
+        <div class="fourth" id="phone">
+            Phone: <input placeholder="enter your contact no." type="phone" name="fphone"><b></b><span
+                class="Nerror"></span>
+        </div><br>
+        <a href="" target="_blank"><input id="btn" style="margin-left:5rem; padding:3px;width:10vh;background-color:rgb(255, 74, 74); " type="submit" value="submit"></a>
+    </form>
+</div>
+</body>
+<script>
+    console.log("welcome")
+    function clearError() {
+        error = document.getElementsByClassName("Nerror");
+        for (let item of error) {
+            item.innerText = ""
+        }
+    }
+    function seterror(id, error) {
+        element = document.getElementById(id);
+        element.getElementsByClassName("Nerror")[0].innerText = error;
+        // element.getElementsByClassName("pass")[0].innerText = error;
+    }
+
+
+    function validateForm() {
+        var returnval = true;
+        clearError();
+
+        var name = document.forms['theform']["fname"].value;
+
+        if (name.length < 5) {
+            seterror("name", "*length is too short");
+            returnval = false;
+        }
+        if (name.length == 0) {
+            seterror("name", "*required")
+            returnval = false;
+        }
+        var pass = document.forms['theform']["fpass"].value;
+        if (pass.length == 0) {
+            seterror("pass", "*required")
+            returnval = false;
+        }
+        else if (pass.length < 6) {
+            seterror("pass", "* password must be six chracter long")
+            returnval = false;
+        }
+        var phone = document.forms['theform']["fphone"].value;
+        if (phone.length == 0) {
+            seterror("phone", "*required")
+            returnval = false;
+        }
+        // var phone = document.forms['theform']['fphone'].value
+        if (phone.length < 10) {
+            seterror("phone", "* must be of 10 character")
+            returnval = false;
+        }
+
+        var email = document.forms['theform']["femail"].value;
+        if (email.length == 0) {
+            seterror("email", "*required")
+            returnval = false;
+        }
+        var address = document.forms['theform']["faddress"].value;
+        if (address.length == 0) {
+            seterror("address", "*required")
+            returnval = false;
+        }
+
+
+        return returnval;
+
+    }
+
+document.getElementsByClassName("fa-bars")[0].addEventListener("click",()=>{
+    document.getElementsByClassName("header2")[0].style.display="flex"
+ })
+document.getElementsByClassName("fa-circle-xmark")[0].addEventListener("click",()=>{
+    document.getElementsByClassName("header2")[0].style.display="none"
+ })
+
+</script>
+</html>
